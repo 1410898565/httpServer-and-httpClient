@@ -1,34 +1,34 @@
 /*****************************************************************
- ** ÎÄ¼şÃû £º httpserver.h
- ** 2015-2017 ¸ßĞÂĞË¿Æ¼¼¼¯ÍÅ¹É·İÓĞÏŞ¹«Ë¾ Co.Ltd
+ ** æ–‡ä»¶å ï¼š httpserver.h
+ ** 2018-2019 
  
- ** ´´½¨ÈË: Âæ¾ü³Ç
- ** ÈÕ  ÆÚ: 2019-04-13
- ** Ãè  Êö: httpserverÄ£¿é
- ** °æ  ±¾: V1.0
+ ** åˆ›å»ºäºº: 
+ ** æ—¥  æœŸ: 2019-04-13
+ ** æ  è¿°: httpserveræ¨¡å—
+ ** ç‰ˆ  æœ¬: V1.0
 
- ** ĞŞ¸ÄÈË:
- ** ÈÕ  ÆÚ:
- ** ĞŞ¸ÄÃèÊö:
- ** °æ  ±¾: 
+ ** ä¿®æ”¹äºº:
+ ** æ—¥  æœŸ:
+ ** ä¿®æ”¹æè¿°:
+ ** ç‰ˆ  æœ¬: 
 ******************************************************************/
 
 #ifndef __HTTPSERVER_H
 #define __HTTPSERVER_H	 
 /*****************************************************************
-* Í·ÎÄ¼ş
+* å¤´æ–‡ä»¶
 ******************************************************************/
 
 
 /*****************************************************************
-* ºê¶¨Òå
+* å®å®šä¹‰
 ******************************************************************/
 #define HTTP_RCV_BUFFER_SIZE (4*1024*1024)
 
 #define MYHTTPD_SIGNATURE		"GxxHttpd v0.1"
 
 /*****************************************************************
-* ½á¹¹¶¨Òå(½öÔÚµ±Ç°CÎÄ¼şÊ¹ÓÃµÄ½á¹¹ÌåĞ´ÔÚµ±Ç°CÎÄ¼şÖĞ£¬·ñÔòĞèĞ´ÔÚHÎÄ¼şÖĞ)
+* ç»“æ„å®šä¹‰(ä»…åœ¨å½“å‰Cæ–‡ä»¶ä½¿ç”¨çš„ç»“æ„ä½“å†™åœ¨å½“å‰Cæ–‡ä»¶ä¸­ï¼Œå¦åˆ™éœ€å†™åœ¨Hæ–‡ä»¶ä¸­)
 ******************************************************************/
 typedef int (*fnHttpCallback)(void *pst,void *pArg0,void *pArg1);
 
@@ -39,31 +39,31 @@ typedef struct _stHttpServerInfo
 	int httpd_timeout;
 	char httpd_ListenIP[32];
 
-	/*http»Øµ÷º¯Êı*/
-	fnHttpCallback faceInfoDelFuc;		/*ÈËÁ³ĞÅÏ¢´¦Àí»Øµ÷º¯Êı*/
-	fnHttpCallback keepAliveDelFunc; 	/*ĞÄÌø´¦Àí»Øµ÷º¯Êı*/
-	fnHttpCallback defaultDelFunc;		/*Í¨ÓÃ´¦Àí»Øµ÷º¯Êı*/	
-	fnHttpCallback respondDelFunc;		/*´¦Àí½á¹ûÏìÓ¦»Øµ÷º¯Êı*/
+	/*httpå›è°ƒå‡½æ•°*/
+	fnHttpCallback faceInfoDelFuc;		/*äººè„¸ä¿¡æ¯å¤„ç†å›è°ƒå‡½æ•°*/
+	fnHttpCallback keepAliveDelFunc; 	/*å¿ƒè·³å¤„ç†å›è°ƒå‡½æ•°*/
+	fnHttpCallback defaultDelFunc;		/*é€šç”¨å¤„ç†å›è°ƒå‡½æ•°*/	
+	fnHttpCallback respondDelFunc;		/*å¤„ç†ç»“æœå“åº”å›è°ƒå‡½æ•°*/
 
-	/*ÓÃÒÔÖ¸¶¨ÌØ¶¨´¦Àí»Øµ÷º¯ÊıµÄÆ¥Åä·û*/
-	char httpd_KeepAliveMatchStr[32];// Èç"/faceinfo"
-	char httpd_FaceInfoMatchStr[32];	// Èç"/keepalive"
+	/*ç”¨ä»¥æŒ‡å®šç‰¹å®šå¤„ç†å›è°ƒå‡½æ•°çš„åŒ¹é…ç¬¦*/
+	char httpd_KeepAliveMatchStr[32];// å¦‚"/faceinfo"
+	char httpd_FaceInfoMatchStr[32];	// å¦‚"/keepalive"
 	
 	int httpd_RcvBufSize;
 	char http_RcvBuffer[HTTP_RCV_BUFFER_SIZE];
 
 	
-	struct evhttp *httpd;	//Ò»¸öhttp server
-	void *pUserStArg;		//Ö¸Ïòuser½á¹¹Ìå
+	struct evhttp *httpd;	//ä¸€ä¸ªhttp server
+	void *pUserStArg;		//æŒ‡å‘userç»“æ„ä½“
 }stHttpServer;
 
 
 
 /*****************************************************************
-* º¯ÊıÔ­ĞÍÉùÃ÷
-* º¯Êı¶¨Òå
-*×¢Òâ£¬±àĞ´º¯ÊıĞèÊ×ÏÈ¶¨ÒåËùÓĞµÄ¾Ö²¿±äÁ¿µÈ£¬²»ÔÊĞíÔÚ
-*º¯ÊıµÄÖĞ¼ä³öÏÖĞÂµÄ±äÁ¿µÄ¶¨Òå¡£
+* å‡½æ•°åŸå‹å£°æ˜
+* å‡½æ•°å®šä¹‰
+*æ³¨æ„ï¼Œç¼–å†™å‡½æ•°éœ€é¦–å…ˆå®šä¹‰æ‰€æœ‰çš„å±€éƒ¨å˜é‡ç­‰ï¼Œä¸å…è®¸åœ¨
+*å‡½æ•°çš„ä¸­é—´å‡ºç°æ–°çš„å˜é‡çš„å®šä¹‰ã€‚
 ******************************************************************/
 int httpServer_Create(stHttpServer *pstHttpServer);
 int httpServer_Remove(stHttpServer *pstHttpServer);
