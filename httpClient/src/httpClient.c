@@ -1,16 +1,16 @@
 /*****************************************************************
- ** ÎÄ¼şÃû £º http.c
- ** 2015-2017 ¸ßĞÂĞË¿Æ¼¼¼¯ÍÅ¹É·İÓĞÏŞ¹«Ë¾ Co.Ltd
+ ** æ–‡ä»¶å ï¼š http.c
+ ** 2018-2019 
  
- ** ´´½¨ÈË: Âæ¾ü³Ç
- ** ÈÕ  ÆÚ: 2019-04-10
- ** Ãè  Êö: http¿Í»§¶Ë
- ** °æ  ±¾: V1.0
+ ** åˆ›å»ºäºº: 
+ ** æ—¥  æœŸ: 2019-04-10
+ ** æ  è¿°: httpå®¢æˆ·ç«¯
+ ** ç‰ˆ  æœ¬: V1.0
 
- ** ĞŞ¸ÄÈË:
- ** ÈÕ  ÆÚ:
- ** ĞŞ¸ÄÃèÊö:
- ** °æ  ±¾: 
+ ** ä¿®æ”¹äºº:
+ ** æ—¥  æœŸ:
+ ** ä¿®æ”¹æè¿°:
+ ** ç‰ˆ  æœ¬: 
 ******************************************************************/
 #ifdef __cplusplus
 	extern "C" {
@@ -18,58 +18,58 @@
 	
 
 /*****************************************************************
-* °üº¬Í·ÎÄ¼ş
+* åŒ…å«å¤´æ–‡ä»¶
 ******************************************************************/
 #include <string.h>
 #include "curl.h"
 #include "httpClient.h"
 
 /*****************************************************************
-* ºê¶¨Òå(½öÔÚµ±Ç°CÎÄ¼şÊ¹ÓÃµÄºê¶¨ÒåĞ´ÔÚµ±Ç°CÎÄ¼şÖĞ£¬·ñÔòĞèĞ´ÔÚHÎÄ¼şÖĞ)
+* å®å®šä¹‰(ä»…åœ¨å½“å‰Cæ–‡ä»¶ä½¿ç”¨çš„å®å®šä¹‰å†™åœ¨å½“å‰Cæ–‡ä»¶ä¸­ï¼Œå¦åˆ™éœ€å†™åœ¨Hæ–‡ä»¶ä¸­)
 ******************************************************************/
 
 /*****************************************************************
-* ½á¹¹¶¨Òå(½öÔÚµ±Ç°CÎÄ¼şÊ¹ÓÃµÄ½á¹¹ÌåĞ´ÔÚµ±Ç°CÎÄ¼şÖĞ£¬·ñÔòĞèĞ´ÔÚHÎÄ¼şÖĞ)
+* ç»“æ„å®šä¹‰(ä»…åœ¨å½“å‰Cæ–‡ä»¶ä½¿ç”¨çš„ç»“æ„ä½“å†™åœ¨å½“å‰Cæ–‡ä»¶ä¸­ï¼Œå¦åˆ™éœ€å†™åœ¨Hæ–‡ä»¶ä¸­)
 ******************************************************************/
 
 /*****************************************************************
-* È«¾Ö±äÁ¿¶¨Òå
+* å…¨å±€å˜é‡å®šä¹‰
 ******************************************************************/
 
 
 /*****************************************************************
-* ¾²Ì¬±äÁ¿¶¨Òå
+* é™æ€å˜é‡å®šä¹‰
 ******************************************************************/
 
 /*****************************************************************
-* Íâ²¿±äÁ¿ÉùÃ÷£¨Èç¹ûÈ«¾Ö±äÁ¿Ã»ÓĞÔÚÆäËüµÄHÎÄ¼şÉùÃ÷£¬ÒıÓÃÊ±ĞèÔÚ´Ë´¦ÉùÃ÷£¬
-*Èç¹ûÒÑÔÚÆäËüHÎÄ¼şÉùÃ÷£¬ÔòÖ»Ğè°üº¬´ËHÎÄ¼ş¼´¿É£©
+* å¤–éƒ¨å˜é‡å£°æ˜ï¼ˆå¦‚æœå…¨å±€å˜é‡æ²¡æœ‰åœ¨å…¶å®ƒçš„Hæ–‡ä»¶å£°æ˜ï¼Œå¼•ç”¨æ—¶éœ€åœ¨æ­¤å¤„å£°æ˜ï¼Œ
+*å¦‚æœå·²åœ¨å…¶å®ƒHæ–‡ä»¶å£°æ˜ï¼Œåˆ™åªéœ€åŒ…å«æ­¤Hæ–‡ä»¶å³å¯ï¼‰
 ******************************************************************/
 																						
 /*****************************************************************
-* º¯ÊıÔ­ĞÍÉùÃ÷
+* å‡½æ•°åŸå‹å£°æ˜
 ******************************************************************/
 
 /*****************************************************************
-* º¯Êı¶¨Òå
-*×¢Òâ£¬±àĞ´º¯ÊıĞèÊ×ÏÈ¶¨ÒåËùÓĞµÄ¾Ö²¿±äÁ¿µÈ£¬²»ÔÊĞíÔÚ
-*º¯ÊıµÄÖĞ¼ä³öÏÖĞÂµÄ±äÁ¿µÄ¶¨Òå¡£
+* å‡½æ•°å®šä¹‰
+*æ³¨æ„ï¼Œç¼–å†™å‡½æ•°éœ€é¦–å…ˆå®šä¹‰æ‰€æœ‰çš„å±€éƒ¨å˜é‡ç­‰ï¼Œä¸å…è®¸åœ¨
+*å‡½æ•°çš„ä¸­é—´å‡ºç°æ–°çš„å˜é‡çš„å®šä¹‰ã€‚
 ******************************************************************/
 
 /*************************************************
-** Function£ºhttpClient_writeBack
-** Description£ºhttp»Øµ÷Êı¾İ½ÓÊÕº¯Êı
-** Input:ÎŞ
-** Output£º
+** Functionï¼šhttpClient_writeBack
+** Descriptionï¼šhttpå›è°ƒæ•°æ®æ¥æ”¶å‡½æ•°
+** Input:æ— 
+** Outputï¼š
 
-** Return£º-1-Ê§°Ü	0-³É¹¦
-** Author£ºÂæ¾ü³Ç
-** Date£º2018-11-27
+** Returnï¼š-1-å¤±è´¥	0-æˆåŠŸ
+** Authorï¼š
+** Dateï¼š2018-11-27
 
-** Modification History£º
-** Author£º
-** Date£º
-** Description£º
+** Modification Historyï¼š
+** Authorï¼š
+** Dateï¼š
+** Descriptionï¼š
 *************************************************/
 size_t httpClient_writeBack(void *ptr, size_t size, size_t nmemb, void *stream)
 {
@@ -77,7 +77,7 @@ size_t httpClient_writeBack(void *ptr, size_t size, size_t nmemb, void *stream)
 	int written  = size*nmemb;
 	stHttpUserInfo *pSt = (stHttpUserInfo*)stream;	
 	
-	if(1 == pSt->ucFlag) //´Ë´¦¼ÇÂ¼Í·²¿
+	if(1 == pSt->ucFlag) //æ­¤å¤„è®°å½•å¤´éƒ¨
 	{
 		if(pSt->pRcvBuffer != NULL && (written <= (pSt->nRcvBufLen - pSt->nRcvSize)))
 		{
@@ -88,7 +88,7 @@ size_t httpClient_writeBack(void *ptr, size_t size, size_t nmemb, void *stream)
 		}
 		return writeLength;
 	}
-	else if(0 == pSt->ucFlag)//´Ë´¦¼ÇÂ¼bodyÄÚÈİ
+	else if(0 == pSt->ucFlag)//æ­¤å¤„è®°å½•bodyå†…å®¹
 	{
 		if(pSt->pRcvBuffer != NULL && (written <= (pSt->nRcvBufLen - pSt->nRcvSize)))
 		{
@@ -104,19 +104,19 @@ size_t httpClient_writeBack(void *ptr, size_t size, size_t nmemb, void *stream)
 
 
 /*************************************************
-** Function£ºhttpClient_httpPost
-** Description£ºhttpPost
-** Input:ÎŞ
-** Output£º
+** Functionï¼šhttpClient_httpPost
+** Descriptionï¼šhttpPost
+** Input:æ— 
+** Outputï¼š
 
-** Return£º-1-Ê§°Ü	0-³É¹¦
-** Author£ºÂæ¾ü³Ç
-** Date£º2018-11-27
+** Returnï¼š-1-å¤±è´¥	0-æˆåŠŸ
+** Authorï¼š
+** Dateï¼š2018-11-27
 
-** Modification History£º
-** Author£º
-** Date£º
-** Description£º
+** Modification Historyï¼š
+** Authorï¼š
+** Dateï¼š
+** Descriptionï¼š
 *************************************************/
 int httpClient_httpPost(stHttpClientInfo *pstUserArg,long *pRespCode)
 {
@@ -148,20 +148,20 @@ int httpClient_httpPost(stHttpClientInfo *pstUserArg,long *pRespCode)
 				break;
 		}
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
-		curl_easy_setopt(curl, CURLOPT_HEADER, 0L);		//·Ö¿ª½ÓÊÕheadºÍbodyÊ±£¬ĞèÒªÉèÖÃÕâ¸öÎª0L
-		curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);	//×¢Òâ£¬ºÁÃë³¬Ê±Ò»¶¨ÒªÉèÖÃÕâ¸ö  
+		curl_easy_setopt(curl, CURLOPT_HEADER, 0L);		//åˆ†å¼€æ¥æ”¶headå’Œbodyæ—¶ï¼Œéœ€è¦è®¾ç½®è¿™ä¸ªä¸º0L
+		curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);	//æ³¨æ„ï¼Œæ¯«ç§’è¶…æ—¶ä¸€å®šè¦è®¾ç½®è¿™ä¸ª  
 		curl_easy_setopt(curl, CURLOPT_POST, 1L); 
 
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, httpClient_writeBack);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &pstUserArg->stHttpUserBody); 	/*½ÓÊÕbody²¿·Ö*/
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &pstUserArg->stHttpUserBody); 	/*æ¥æ”¶bodyéƒ¨åˆ†*/
 
 		curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION,httpClient_writeBack);
-		curl_easy_setopt(curl, CURLOPT_WRITEHEADER, &pstUserArg->stHttpUserHead);	/*½ÓÊÕÍ·²¿·Ö*/
+		curl_easy_setopt(curl, CURLOPT_WRITEHEADER, &pstUserArg->stHttpUserHead);	/*æ¥æ”¶å¤´éƒ¨åˆ†*/
 		
-		curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 10*1000);	//ÉèÖÃÑÓÊ±30s
+		curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 10*1000);	//è®¾ç½®å»¶æ—¶30s
 		switch(pstUserArg->stHttpUserHead.nOperation)
 		{
-			case HTTP_POST_ONE_SHOT_PIC_MEM:  //Ò»´ÎĞÔ·¢
+			case HTTP_POST_ONE_SHOT_PIC_MEM:  //ä¸€æ¬¡æ€§å‘
 				curl_easy_setopt(curl, CURLOPT_POSTFIELDS, pstUserArg->stHttpUserBody.pSendBuffer);
 				curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, pstUserArg->stHttpUserBody.nSedSize);
 				break;
@@ -195,19 +195,19 @@ int httpClient_httpPost(stHttpClientInfo *pstUserArg,long *pRespCode)
 }
 
 /*************************************************
-** Function£ºhttpClient_httpGet
-** Description£ºhttpget
-** Input:ÎŞ
-** Output£º
+** Functionï¼šhttpClient_httpGet
+** Descriptionï¼šhttpget
+** Input:æ— 
+** Outputï¼š
 
-** Return£º-1-Ê§°Ü	0-³É¹¦
-** Author£ºÂæ¾ü³Ç
-** Date£º2018-11-27
+** Returnï¼š-1-å¤±è´¥	0-æˆåŠŸ
+** Authorï¼š
+** Dateï¼š2018-11-27
 
-** Modification History£º
-** Author£º
-** Date£º
-** Description£º
+** Modification Historyï¼š
+** Authorï¼š
+** Dateï¼š
+** Descriptionï¼š
 *************************************************/
 int httpClient_httpGet(stHttpClientInfo *pstUserArg,long *pRespCode)
 {
@@ -226,8 +226,8 @@ int httpClient_httpGet(stHttpClientInfo *pstUserArg,long *pRespCode)
 	curl = curl_easy_init();
 	if(curl)
 	{
-		curl_easy_setopt(curl, CURLOPT_HEADER, 0L);							/*·Ö¿ª½ÓÊÕheadºÍbodyÊ±£¬ĞèÒªÉèÖÃÕâ¸öÎª0L*/
-		curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);						/*×¢Òâ£¬ºÁÃë³¬Ê±Ò»¶¨ÒªÉèÖÃÕâ¸ö*/
+		curl_easy_setopt(curl, CURLOPT_HEADER, 0L);							/*åˆ†å¼€æ¥æ”¶headå’Œbodyæ—¶ï¼Œéœ€è¦è®¾ç½®è¿™ä¸ªä¸º0L*/
+		curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1L);						/*æ³¨æ„ï¼Œæ¯«ç§’è¶…æ—¶ä¸€å®šè¦è®¾ç½®è¿™ä¸ª*/
 		curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);		
 		
 		curl_easy_setopt(curl, CURLOPT_URL, pstUserArg->chUrl);
@@ -235,12 +235,12 @@ int httpClient_httpGet(stHttpClientInfo *pstUserArg,long *pRespCode)
 		curl_easy_setopt(curl, CURLOPT_PASSWORD, pstUserArg->chUserPassWord);
 
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, httpClient_writeBack);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &pstUserArg->stHttpUserBody); 	/*½ÓÊÕbody²¿·Ö*/
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &pstUserArg->stHttpUserBody); 	/*æ¥æ”¶bodyéƒ¨åˆ†*/
 
 		curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION,httpClient_writeBack);
-		curl_easy_setopt(curl, CURLOPT_WRITEHEADER, &pstUserArg->stHttpUserHead);	/*½ÓÊÕÍ·²¿·Ö*/
+		curl_easy_setopt(curl, CURLOPT_WRITEHEADER, &pstUserArg->stHttpUserHead);	/*æ¥æ”¶å¤´éƒ¨åˆ†*/
 		
-		curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 10*1000);			/*ÉèÖÃÑÓÊ±10s*/		
+		curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, 10*1000);			/*è®¾ç½®å»¶æ—¶10s*/		
 		code = curl_easy_perform(curl);
 		if(code != CURLE_OK)
 		{
