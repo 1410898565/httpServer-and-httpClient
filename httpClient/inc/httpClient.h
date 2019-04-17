@@ -1,16 +1,16 @@
 /*****************************************************************
- ** ÎÄ¼şÃû : http.h
- ** 2015-2017 ¸ßĞÂĞË¿Æ¼¼¼¯ÍÅ¹É·İÓĞÏŞ¹«Ë¾ Co.Ltd
+ ** æ–‡ä»¶å : http.h
+ ** 2018-2019 
  
- ** ´´½¨ÈË: ³ÂÏÍìû
- ** ÈÕ  ÆÚ: 2016-11-xx
- ** Ãè  Êö: httpÓ¦ÓÃ³ÌĞòÍ·ÎÄ¼ş
- ** °æ  ±¾: V1.0
+ ** åˆ›å»ºäºº:
+ ** æ—¥  æœŸ: 2019-04-11
+ ** æ  è¿°: httpClient
+ ** ç‰ˆ  æœ¬: V1.0
 
- ** ĞŞ¸ÄÈË:
- ** ÈÕ  ÆÚ:
- ** ĞŞ¸ÄÃèÊö:
- ** °æ  ±¾: 
+ ** ä¿®æ”¹äºº:
+ ** æ—¥  æœŸ:
+ ** ä¿®æ”¹æè¿°:
+ ** ç‰ˆ  æœ¬: 
 ******************************************************************/
 
 #ifndef __HTTPCLIENT_H
@@ -21,45 +21,45 @@ extern "C" {
 #endif
 
 /*****************************************************************
-* °üº¬Í·ÎÄ¼ş(Èç·ÇÌØÊâĞèÒª£¬HÎÄ¼ş²»½¨Òé°üº¬ÆäËüHÎÄ¼ş)
+* åŒ…å«å¤´æ–‡ä»¶(å¦‚éç‰¹æ®Šéœ€è¦ï¼ŒHæ–‡ä»¶ä¸å»ºè®®åŒ…å«å…¶å®ƒHæ–‡ä»¶)
 ******************************************************************/
 
 
 /*****************************************************************
-* ºê¶¨Òå
+* å®å®šä¹‰
 ******************************************************************/
 #define HTTP_STRING							"http://"
 #define HTTP_POST_ONE_SHOT_PIC_MEM			0
 
-#define HTTP_BODY 						0  //httpÄÚÈİ
-#define HTTP_HEAD						1  //httpÍ·
+#define HTTP_BODY 						0  //httpå†…å®¹
+#define HTTP_HEAD						1  //httpå¤´
 
 
 /*****************************************************************
-* ½á¹¹¡¢Ã¶¾Ù¶¨Òå
+* ç»“æ„ã€æšä¸¾å®šä¹‰
 ******************************************************************/
 typedef struct _stHttpUserInfo
 {
-	int nOperation;				//²Ù×÷³¤¶È
-	int ucFlag;					//ÓÃÒÔÇø·ÖÍ·²¿»¹ÊÇÄÚÈİ²¿·Ö
-	int nSedSize;				//·¢ËÍÊı¾İ´óĞ¡	
-	int nRcvBufLen;				//»º³åÇø³¤¶È
-	int nRcvSize;				//½ÓÊÕbodyÊı¾İ´óĞ¡
+	int nOperation;				//æ“ä½œé•¿åº¦
+	int ucFlag;					//ç”¨ä»¥åŒºåˆ†å¤´éƒ¨è¿˜æ˜¯å†…å®¹éƒ¨åˆ†
+	int nSedSize;				//å‘é€æ•°æ®å¤§å°	
+	int nRcvBufLen;				//ç¼“å†²åŒºé•¿åº¦
+	int nRcvSize;				//æ¥æ”¶bodyæ•°æ®å¤§å°
 	
-	char *pRcvBuffer;			//Ö¸ÏòÓÃ»§ÓÃÀ´´æ´¢Êı¾İµÄbuf
-	char *pSendBuffer;			//Ö¸ÏòÓÃ»§·¢ËÍÊı¾İµÄbuf
+	char *pRcvBuffer;			//æŒ‡å‘ç”¨æˆ·ç”¨æ¥å­˜å‚¨æ•°æ®çš„buf
+	char *pSendBuffer;			//æŒ‡å‘ç”¨æˆ·å‘é€æ•°æ®çš„buf
 }stHttpUserInfo;
 
 
 
 typedef struct _stHttpClientInfo
 {
-	int nClientPort;			//http·şÎñÆ÷¼àÌı¶Ë¿ÚºÅ
-	char chClientIP[32];		//http·şÎñÆ÷IP
-	char chClientPath[64];		//http·şÎñÆ÷ÎÄ¼şÂ·¾¶
-	char chUserName[32];		//http·şÎñÆ÷µÇÂ¼ÓÃ»§
-	char chUserPassWord[32];	//http·şÎñÆ÷µÇÂ¼ÃÜÂë
-	char chUrl[128];			//http·şÎñÆ÷url
+	int nClientPort;			//httpæœåŠ¡å™¨ç›‘å¬ç«¯å£å·
+	char chClientIP[32];		//httpæœåŠ¡å™¨IP
+	char chClientPath[64];		//httpæœåŠ¡å™¨æ–‡ä»¶è·¯å¾„
+	char chUserName[32];		//httpæœåŠ¡å™¨ç™»å½•ç”¨æˆ·
+	char chUserPassWord[32];	//httpæœåŠ¡å™¨ç™»å½•å¯†ç 
+	char chUrl[128];			//httpæœåŠ¡å™¨url
 
 	stHttpUserInfo stHttpUserHead;
 	stHttpUserInfo stHttpUserBody;
@@ -67,11 +67,11 @@ typedef struct _stHttpClientInfo
 
 
 /*****************************************************************
-* È«¾Ö±äÁ¿ÉùÃ÷
+* å…¨å±€å˜é‡å£°æ˜
 ******************************************************************/
 
 /*****************************************************************
-* º¯ÊıÔ­ĞÍÉùÃ÷
+* å‡½æ•°åŸå‹å£°æ˜
 ******************************************************************/
 int httpClient_httpPost(stHttpClientInfo *pstUserArg,long *pRespCode);
 int httpClient_httpGet(stHttpClientInfo *pstUserArg,long *pRespCode);
