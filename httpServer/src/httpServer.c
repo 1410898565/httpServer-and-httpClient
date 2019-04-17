@@ -1,20 +1,20 @@
 /*****************************************************************
- ** ÎÄ¼şÃû £º httpserver.c
- ** 2015-2017 ¸ßĞÂĞË¿Æ¼¼¼¯ÍÅ¹É·İÓĞÏŞ¹«Ë¾ Co.Ltd
+ ** æ–‡ä»¶å ï¼š httpserver.c
+ ** 2018-2019
  
- ** ´´½¨ÈË: Âæ¾ü³Ç
- ** ÈÕ  ÆÚ: 2018-08-13
- ** Ãè  Êö: httpserverÄ£¿é
- ** °æ  ±¾: V1.0
+ ** åˆ›å»ºäºº: 
+ ** æ—¥  æœŸ: 2018-08-13
+ ** æ  è¿°: httpserveræ¨¡å—
+ ** ç‰ˆ  æœ¬: V1.0
 
- ** ĞŞ¸ÄÈË:
- ** ÈÕ  ÆÚ:
- ** ĞŞ¸ÄÃèÊö:
- ** °æ  ±¾: 
+ ** ä¿®æ”¹äºº:
+ ** æ—¥  æœŸ:
+ ** ä¿®æ”¹æè¿°:
+ ** ç‰ˆ  æœ¬: 
 ******************************************************************/
 
 /*****************************************************************
-* °üº¬Í·ÎÄ¼ş
+* åŒ…å«å¤´æ–‡ä»¶
 ******************************************************************/
 #include <string.h>
 #include <stdlib.h>
@@ -41,44 +41,44 @@ extern "C" {
 
 
 /*****************************************************************
-* ºê¶¨Òå(½öÔÚµ±Ç°CÎÄ¼şÊ¹ÓÃµÄºê¶¨ÒåĞ´ÔÚµ±Ç°CÎÄ¼şÖĞ£¬·ñÔòĞèĞ´ÔÚHÎÄ¼şÖĞ)
+* å®å®šä¹‰(ä»…åœ¨å½“å‰Cæ–‡ä»¶ä½¿ç”¨çš„å®å®šä¹‰å†™åœ¨å½“å‰Cæ–‡ä»¶ä¸­ï¼Œå¦åˆ™éœ€å†™åœ¨Hæ–‡ä»¶ä¸­)
 ******************************************************************/
 
 
 /*****************************************************************
-* ½á¹¹¶¨Òå(½öÔÚµ±Ç°CÎÄ¼şÊ¹ÓÃµÄ½á¹¹ÌåĞ´ÔÚµ±Ç°CÎÄ¼şÖĞ£¬·ñÔòĞèĞ´ÔÚHÎÄ¼şÖĞ)
+* ç»“æ„å®šä¹‰(ä»…åœ¨å½“å‰Cæ–‡ä»¶ä½¿ç”¨çš„ç»“æ„ä½“å†™åœ¨å½“å‰Cæ–‡ä»¶ä¸­ï¼Œå¦åˆ™éœ€å†™åœ¨Hæ–‡ä»¶ä¸­)
 ******************************************************************/
 
 
 /*****************************************************************
-* È«¾Ö±äÁ¿¶¨Òå
+* å…¨å±€å˜é‡å®šä¹‰
 ******************************************************************/
 int gnEventInitialFlag = 0;
 
 /*****************************************************************
-* ¾²Ì¬±äÁ¿¶¨Òå
+* é™æ€å˜é‡å®šä¹‰
 ******************************************************************/
 
 /*****************************************************************
-* Íâ²¿±äÁ¿ÉùÃ÷£¨Èç¹ûÈ«¾Ö±äÁ¿Ã»ÓĞÔÚÆäËüµÄHÎÄ¼şÉùÃ÷£¬ÒıÓÃÊ±ĞèÔÚ´Ë´¦ÉùÃ÷£¬
-*Èç¹ûÒÑÔÚÆäËüHÎÄ¼şÉùÃ÷£¬ÔòÖ»Ğè°üº¬´ËHÎÄ¼ş¼´¿É£©
+* å¤–éƒ¨å˜é‡å£°æ˜ï¼ˆå¦‚æœå…¨å±€å˜é‡æ²¡æœ‰åœ¨å…¶å®ƒçš„Hæ–‡ä»¶å£°æ˜ï¼Œå¼•ç”¨æ—¶éœ€åœ¨æ­¤å¤„å£°æ˜ï¼Œ
+*å¦‚æœå·²åœ¨å…¶å®ƒHæ–‡ä»¶å£°æ˜ï¼Œåˆ™åªéœ€åŒ…å«æ­¤Hæ–‡ä»¶å³å¯ï¼‰
 ******************************************************************/
 
 
 /*************************************************
-** Function£ºhttpServer_CommonDel
-** Description£ºÍ¨ÓÃ´¦Àí»Øµ÷º¯Êı
-** Input£ºÎŞ
-** Output£ºÎŞ
+** Functionï¼šhttpServer_CommonDel
+** Descriptionï¼šé€šç”¨å¤„ç†å›è°ƒå‡½æ•°
+** Inputï¼šæ— 
+** Outputï¼šæ— 
 
-** Return£º-1-Ê§°Ü	0-³É¹¦
-** Author£ºÂæ¾ü³Ç
-** Date£º2018-11-27
+** Returnï¼š-1-å¤±è´¥	0-æˆåŠŸ
+** Authorï¼š
+** Dateï¼š2018-11-27
 
-** Modification History£º
-** Author£º
-** Date£º
-** Description£º
+** Modification Historyï¼š
+** Authorï¼š
+** Dateï¼š
+** Descriptionï¼š
 *************************************************/
 void httpServer_CommonDel(struct evhttp_request *req, void *arg) 
 {
@@ -87,7 +87,7 @@ void httpServer_CommonDel(struct evhttp_request *req, void *arg)
 	char respondBuffer[128]={0};
 	stHttpServer *pstHttpServer = (stHttpServer *)arg;
 
-	/*»ñÈ¡POST·½·¨µÄÊı¾İ*/
+	/*è·å–POSTæ–¹æ³•çš„æ•°æ®*/
 	size_t post_size = EVBUFFER_LENGTH(req->input_buffer);
 	char *post_data = (char *) EVBUFFER_DATA(req->input_buffer);
 	
@@ -98,11 +98,11 @@ void httpServer_CommonDel(struct evhttp_request *req, void *arg)
 	memset(pstHttpServer->http_RcvBuffer,0,pstHttpServer->httpd_RcvBufSize);
 	memcpy(pstHttpServer->http_RcvBuffer, post_data, nSize);
 
-	/*Èç¹ûÓÃ»§ÓĞ×¢²á´¦Àíº¯ÊıÔò½«Êı¾İ½»¸øÓÃ»§´¦Àí*/
+	/*å¦‚æœç”¨æˆ·æœ‰æ³¨å†Œå¤„ç†å‡½æ•°åˆ™å°†æ•°æ®äº¤ç»™ç”¨æˆ·å¤„ç†*/
 	if(pstHttpServer->defaultDelFunc != NULL)
 	{
 		nRet = pstHttpServer->defaultDelFunc(req,pstHttpServer,NULL);	
-		/*²úÉú»ØÓ¦ĞÅÏ¢*/
+		/*äº§ç”Ÿå›åº”ä¿¡æ¯*/
 		if(pstHttpServer->respondDelFunc !=NULL){
 			nRet = pstHttpServer->respondDelFunc(req,respondBuffer,&nRet);
 		}
@@ -119,26 +119,26 @@ void httpServer_CommonDel(struct evhttp_request *req, void *arg)
 	buf = evbuffer_new();
 	evbuffer_add_printf(buf, "%s", respondBuffer);
 	
-	//½«·â×°ºÃµÄevbuffer ·¢ËÍ¸ø¿Í»§¶Ë
+	//å°†å°è£…å¥½çš„evbuffer å‘é€ç»™å®¢æˆ·ç«¯
 	evhttp_send_reply(req, HTTP_OK, "OK", buf);
 	evbuffer_free(buf);
 }
 
 
 /*************************************************
-** Function£ºhttpServer_KeepAliveDel
-** Description£ºĞÄÌø´¦Àíº¯Êı
-** Input£ºÎŞ
-** Output£ºÎŞ
+** Functionï¼šhttpServer_KeepAliveDel
+** Descriptionï¼šå¿ƒè·³å¤„ç†å‡½æ•°
+** Inputï¼šæ— 
+** Outputï¼šæ— 
 
-** Return£º-1-Ê§°Ü	0-³É¹¦
-** Author£ºÂæ¾ü³Ç
-** Date£º2018-11-27
+** Returnï¼š-1-å¤±è´¥	0-æˆåŠŸ
+** Authorï¼š
+** Dateï¼š2018-11-27
 
-** Modification History£º
-** Author£º
-** Date£º
-** Description£º
+** Modification Historyï¼š
+** Authorï¼š
+** Dateï¼š
+** Descriptionï¼š
 *************************************************/
 void httpServer_KeepAliveDel(struct evhttp_request *req, void *arg) 
 {
@@ -147,7 +147,7 @@ void httpServer_KeepAliveDel(struct evhttp_request *req, void *arg)
 	char respondBuffer[128]={0};
 	stHttpServer *pstHttpServer = (stHttpServer *)arg;
 
-	/*»ñÈ¡POST·½·¨µÄÊı¾İ*/
+	/*è·å–POSTæ–¹æ³•çš„æ•°æ®*/
 	size_t post_size = EVBUFFER_LENGTH(req->input_buffer);
 	char *post_data = (char *) EVBUFFER_DATA(req->input_buffer);
 	
@@ -158,11 +158,11 @@ void httpServer_KeepAliveDel(struct evhttp_request *req, void *arg)
 	memset(pstHttpServer->http_RcvBuffer,0,pstHttpServer->httpd_RcvBufSize);
 	memcpy(pstHttpServer->http_RcvBuffer, post_data, nSize);
 
-	/*Èç¹ûÓÃ»§ÓĞ×¢²á´¦Àíº¯ÊıÔò½«Êı¾İ½»¸øÓÃ»§´¦Àí*/
+	/*å¦‚æœç”¨æˆ·æœ‰æ³¨å†Œå¤„ç†å‡½æ•°åˆ™å°†æ•°æ®äº¤ç»™ç”¨æˆ·å¤„ç†*/
 	if(pstHttpServer->keepAliveDelFunc != NULL)
 	{
 		nRet = pstHttpServer->keepAliveDelFunc(req,pstHttpServer,NULL);	
-		/*²úÉú»ØÓ¦ĞÅÏ¢*/
+		/*äº§ç”Ÿå›åº”ä¿¡æ¯*/
 		if(pstHttpServer->respondDelFunc !=NULL){
 			nRet = pstHttpServer->respondDelFunc(req,respondBuffer,&nRet);
 		}
@@ -179,26 +179,26 @@ void httpServer_KeepAliveDel(struct evhttp_request *req, void *arg)
 	buf = evbuffer_new();
 	evbuffer_add_printf(buf, "%s", respondBuffer);
 	
-	//½«·â×°ºÃµÄevbuffer ·¢ËÍ¸ø¿Í»§¶Ë
+	//å°†å°è£…å¥½çš„evbuffer å‘é€ç»™å®¢æˆ·ç«¯
 	evhttp_send_reply(req, HTTP_OK, "OK", buf);
 	evbuffer_free(buf);
 }
 
 
 /*************************************************
-** Function£ºhttpServer_FaceInfoDel
-** Description£ºÈËÁ³ĞÅÏ¢´¦Àíº¯Êı
-** Input£ºÎŞ
-** Output£ºÎŞ
+** Functionï¼šhttpServer_FaceInfoDel
+** Descriptionï¼šäººè„¸ä¿¡æ¯å¤„ç†å‡½æ•°
+** Inputï¼šæ— 
+** Outputï¼šæ— 
 
-** Return£º-1-Ê§°Ü	0-³É¹¦
-** Author£ºÂæ¾ü³Ç
-** Date£º2018-11-27
+** Returnï¼š-1-å¤±è´¥	0-æˆåŠŸ
+** Authorï¼š
+** Dateï¼š2018-11-27
 
-** Modification History£º
-** Author£º
-** Date£º
-** Description£º
+** Modification Historyï¼š
+** Authorï¼š
+** Dateï¼š
+** Descriptionï¼š
 *************************************************/
 void httpServer_FaceInfoDel(struct evhttp_request *req, void *arg) 
 {
@@ -207,7 +207,7 @@ void httpServer_FaceInfoDel(struct evhttp_request *req, void *arg)
 	char respondBuffer[128]={0};
 	stHttpServer *pstHttpServer = (stHttpServer *)arg;
 
-	/*»ñÈ¡POST·½·¨µÄÊı¾İ*/
+	/*è·å–POSTæ–¹æ³•çš„æ•°æ®*/
 	size_t post_size = EVBUFFER_LENGTH(req->input_buffer);
 	char *post_data = (char *) EVBUFFER_DATA(req->input_buffer);
 	
@@ -218,11 +218,11 @@ void httpServer_FaceInfoDel(struct evhttp_request *req, void *arg)
 	memset(pstHttpServer->http_RcvBuffer,0,pstHttpServer->httpd_RcvBufSize);
 	memcpy(pstHttpServer->http_RcvBuffer, post_data, nSize);
 
-	/*Èç¹ûÓÃ»§ÓĞ×¢²á´¦Àíº¯ÊıÔò½«Êı¾İ½»¸øÓÃ»§´¦Àí*/
+	/*å¦‚æœç”¨æˆ·æœ‰æ³¨å†Œå¤„ç†å‡½æ•°åˆ™å°†æ•°æ®äº¤ç»™ç”¨æˆ·å¤„ç†*/
 	if(pstHttpServer->faceInfoDelFuc != NULL)
 	{
 		nRet = pstHttpServer->faceInfoDelFuc(req,pstHttpServer,NULL);	
-		/*²úÉú»ØÓ¦ĞÅÏ¢*/
+		/*äº§ç”Ÿå›åº”ä¿¡æ¯*/
 		if(pstHttpServer->respondDelFunc !=NULL){
 			nRet = pstHttpServer->respondDelFunc(req,respondBuffer,&nRet);
 		}
@@ -239,7 +239,7 @@ void httpServer_FaceInfoDel(struct evhttp_request *req, void *arg)
 	buf = evbuffer_new();
 	evbuffer_add_printf(buf, "%s", respondBuffer);
 	
-	//½«·â×°ºÃµÄevbuffer ·¢ËÍ¸ø¿Í»§¶Ë
+	//å°†å°è£…å¥½çš„evbuffer å‘é€ç»™å®¢æˆ·ç«¯
 	evhttp_send_reply(req, HTTP_OK, "OK", buf);
 	evbuffer_free(buf);
 }
@@ -247,23 +247,23 @@ void httpServer_FaceInfoDel(struct evhttp_request *req, void *arg)
 
 
 /*************************************************
-** Function£ºhttpServer_Create
-** Description£º´´½¨Ò»¸öhttp·şÎñÆ÷
-** Input:ÎŞ
-** Output£º
+** Functionï¼šhttpServer_Create
+** Descriptionï¼šåˆ›å»ºä¸€ä¸ªhttpæœåŠ¡å™¨
+** Input:æ— 
+** Outputï¼š
 
-** Return£º-1-Ê§°Ü	0-³É¹¦
-** Author£ºÂæ¾ü³Ç
-** Date£º2018-11-27
+** Returnï¼š-1-å¤±è´¥	0-æˆåŠŸ
+** Authorï¼š
+** Dateï¼š2018-11-27
 
-** Modification History£º
-** Author£º
-** Date£º
-** Description£º
+** Modification Historyï¼š
+** Authorï¼š
+** Dateï¼š
+** Descriptionï¼š
 *************************************************/
 int httpServer_Create(stHttpServer *pstHttpServer)
 {
-	//³õÊ¼»¯event_init
+	//åˆå§‹åŒ–event_init
 	event_init();
 
 	printf("httpServer_ListenIP:%s\n",pstHttpServer->httpd_ListenIP);
@@ -274,14 +274,14 @@ int httpServer_Create(stHttpServer *pstHttpServer)
 	pstHttpServer->httpd = evhttp_start(pstHttpServer->httpd_ListenIP, pstHttpServer->httpd_ListenPort);
 
 	evhttp_set_timeout(pstHttpServer->httpd, pstHttpServer->httpd_timeout);
-	//ÌØ¶¨µÄURIÖ¸¶¨callback
+	//ç‰¹å®šçš„URIæŒ‡å®šcallback
 	evhttp_set_cb(pstHttpServer->httpd, pstHttpServer->httpd_FaceInfoMatchStr, httpServer_FaceInfoDel, (void*)pstHttpServer);
 	evhttp_set_cb(pstHttpServer->httpd, pstHttpServer->httpd_KeepAliveMatchStr, httpServer_KeepAliveDel, (void*)pstHttpServer);
 
-	/*Í¨ÓÃ´¦Àí»Øµ÷º¯ÊıÖ¸¶¨*/
+	/*é€šç”¨å¤„ç†å›è°ƒå‡½æ•°æŒ‡å®š*/
 	evhttp_set_gencb(pstHttpServer->httpd,httpServer_CommonDel, (void*)pstHttpServer);
 
-	//Ñ­»·´¦Àíevents
+	//å¾ªç¯å¤„ç†events
 	event_dispatch();
 
 	evhttp_free(pstHttpServer->httpd);
@@ -289,19 +289,19 @@ int httpServer_Create(stHttpServer *pstHttpServer)
 }
 
 /*************************************************
-** Function£ºhttpServer_Remove
-** Description£ºhttpServer_Remove
-** Input:ÎŞ
-** Output£º
+** Functionï¼šhttpServer_Remove
+** Descriptionï¼šhttpServer_Remove
+** Input:æ— 
+** Outputï¼š
 
-** Return£º-1-Ê§°Ü	0-³É¹¦
-** Author£ºÂæ¾ü³Ç
-** Date£º2018-11-27
+** Returnï¼š-1-å¤±è´¥	0-æˆåŠŸ
+** Authorï¼š
+** Dateï¼š2018-11-27
 
-** Modification History£º
-** Author£º
-** Date£º
-** Description£º
+** Modification Historyï¼š
+** Authorï¼š
+** Dateï¼š
+** Descriptionï¼š
 *************************************************/
 int httpServer_Remove(stHttpServer *pstHttpServer)
 {
